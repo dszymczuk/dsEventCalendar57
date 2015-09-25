@@ -2,7 +2,7 @@
 namespace Concrete\Package\Dseventcalendar\Controller\SinglePage\Dashboard\EventCalendar;
 use \Concrete\Core\Page\Controller\DashboardPageController;
 //use Concrete\Package\Dseventcalendar\Libraries;
-//use Concrete\Package\Dseventcalendar\Libraries\dsEventCalendar;
+use Concrete\Package\Dseventcalendar\Src\Dseventcalendar;
 use Loader;
 
 defined('C5_EXECUTE') or die("Access Denied.");
@@ -53,7 +53,7 @@ class Types extends DashboardPageController
 
 //        Loader::library('dsEventCalendar','dsEventCalendar');
 
-//        $dsEventCalendar = new dsEventCalendar();
+        $dsEventCalendar = new dsEventCalendar();
 //        $this->set('types', $dsEventCalendar->getEventTypes());
         $this->set('types', array()); //temp
 
