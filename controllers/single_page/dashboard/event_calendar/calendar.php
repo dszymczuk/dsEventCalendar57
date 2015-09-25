@@ -1,6 +1,9 @@
-<?php  defined('C5_EXECUTE') or die("Access Denied.");
+<?php
+namespace Concrete\Package\Dseventcalendar\Controller\SinglePage\Dashboard\EventCalendar;
+use \Concrete\Core\Page\Controller\DashboardPageController;
+use Loader;
 
-class DashboardEventCalendarCalendarController extends Controller
+class Calendar extends DashboardPageController
 {
     public function on_before_render()
     {

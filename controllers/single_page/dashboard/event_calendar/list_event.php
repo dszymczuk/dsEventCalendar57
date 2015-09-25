@@ -1,7 +1,12 @@
-<?php defined('C5_EXECUTE') or die("Access Denied.");
+<?php
+namespace Concrete\Package\Dseventcalendar\Controller\SinglePage\Dashboard\EventCalendar;
+use \Concrete\Core\Page\Controller\DashboardPageController;
+use Loader;
+
+defined('C5_EXECUTE') or die("Access Denied.");
 
 
-class DashboardEventCalendarListEventController extends Controller
+class ListEvent extends DashboardPageController
 {
 
     public function on_before_render()
@@ -9,10 +14,10 @@ class DashboardEventCalendarListEventController extends Controller
         $this->addHeaderItem(Loader::helper('html')->css('jquery.datetimepicker.min.css', 'dsEventCalendar'));
         $this->addHeaderItem(Loader::helper('html')->css('fullcalendar.min.css', 'dsEventCalendar'));
         $this->addHeaderItem(Loader::helper('html')->css('dsStyle.css', 'dsEventCalendar'));
-        $this->addHeaderItem(Loader::helper('html')->javascript('moment.min.js', 'dsEventCalendar'));
-        $this->addHeaderItem(Loader::helper('html')->javascript('jquery.datetimepicker.min.js', 'dsEventCalendar'));
-        $this->addHeaderItem(Loader::helper('html')->javascript('fullcalendar.min.js', 'dsEventCalendar'));
-        $this->addHeaderItem(Loader::helper('html')->javascript('lang-all.js', 'dsEventCalendar'));
+        $this->addFooterItem(Loader::helper('html')->javascript('moment.min.js', 'dsEventCalendar'));
+        $this->addFooterItem(Loader::helper('html')->javascript('jquery.datetimepicker.min.js', 'dsEventCalendar'));
+        $this->addFooterItem(Loader::helper('html')->javascript('fullcalendar.min.js', 'dsEventCalendar'));
+        $this->addFooterItem(Loader::helper('html')->javascript('lang-all.js', 'dsEventCalendar'));
     }
 
     public function view()

@@ -1,7 +1,13 @@
 <?php
+namespace Concrete\Package\Dseventcalendar\Block\EventCalendar;
+use Concrete\Core\Block\BlockController;
+use Loader;
+use Config;
+use DsEventCalendar;
+
 defined('C5_EXECUTE') or die(_("Access Denied."));
 
-class EventCalendarBlockController extends BlockController
+class Controller extends BlockController
 {
 
     protected $btName = "Event Calendar";
