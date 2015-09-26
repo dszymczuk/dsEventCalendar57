@@ -2,7 +2,11 @@
 namespace Concrete\Package\Dseventcalendar\Controller\SinglePage\Dashboard\EventCalendar;
 use \Concrete\Core\Page\Controller\DashboardPageController;
 //use Concrete\Package\Dseventcalendar\Libraries;
-use Concrete\Package\Dseventcalendar\Src\Dseventcalendar;
+//use Concrete\Package\Dseventcalendar\Src;
+//use Package\Dseventcalendar\Libraries;
+//use dsEventCalendar\dsEventCalendar;
+//use dsEventCalendar;
+use dsEventCalendar\dsEventCalendar;
 use Loader;
 
 defined('C5_EXECUTE') or die("Access Denied.");

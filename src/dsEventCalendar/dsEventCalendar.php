@@ -1,5 +1,5 @@
 <?php
-namespace Concrete\Package\Dseventcalendar\Src;
+namespace dsEventCalendar;
 use Loader;
 
 defined('C5_EXECUTE') or die(_("Access Denied."));
