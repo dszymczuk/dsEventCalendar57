@@ -16,9 +16,9 @@ class Types extends DashboardPageController
 
 	public function on_before_render()
     {
-        $this->addHeaderItem(Loader::helper('html')->css('colorpicker.min.css', 'dsEventCalendar'));
+        $this->addFooterItem(Loader::helper('html')->css('colorpicker.min.css', 'dsEventCalendar'));
         $this->addFooterItem(Loader::helper('html')->javascript('colorpicker.min.js', 'dsEventCalendar'));
-        $this->addHeaderItem(Loader::helper('html')->css('dsStyle.css', 'dsEventCalendar'));
+        $this->addFooterItem(Loader::helper('html')->css('dsStyle.css', 'dsEventCalendar'));
     }
 
     public function view()
@@ -55,11 +55,8 @@ class Types extends DashboardPageController
             }
         }
 
-//        Loader::library('dsEventCalendar','dsEventCalendar');
-
         $dsEventCalendar = new dsEventCalendar();
-//        $this->set('types', $dsEventCalendar->getEventTypes());
-        $this->set('types', array()); //temp
+        $this->set('types', $dsEventCalendar->getEventTypes());
 
 
 
@@ -69,38 +66,38 @@ class Types extends DashboardPageController
 
     public function update()
     {
-//        if (isset($_POST) && is_numeric($_POST['id'])) {
-//            $db = Loader::db();
-//            $sql = "UPDATE dsEventCalendarTypes SET
-//            type = ?,
-//            color = ?
-//            WHERE typeID=" . $this->post('id');
-//            $args = array(
-//                $this->post('type'),
-//                $this->post('color')
-//            );
-//            $db->Execute($sql, $args);
-//            die("OK");
-//        } else {
-//            die("ERROR");
-//        }
+        if (isset($_POST) && is_numeric($_POST['id'])) {
+            $db = Loader::db();
+            $sql = "UPDATE dsEventCalendarTypes SET
+            type = ?,
+            color = ?
+            WHERE typeID=" . $this->post('id');
+            $args = array(
+                $this->post('type'),
+                $this->post('color')
+            );
+            $db->Execute($sql, $args);
+            die("OK");
+        } else {
+            die("ERROR");
+        }
     }
 
     public function delete()
     {
-//        if (isset($_POST) && is_numeric($_POST['id'])) {
-//            $db = Loader::db();
-//            $sql = "DELETE FROM dsEventCalendarTypes WHERE typeID = " . $this->post('id');
-//            $db->Execute($sql);
-//
-//
-//            $sql2 = "UPDATE dsEventCalendarEvents SET
-//            type = 0
-//            WHERE type=" . $this->post('id');
-//            $db->Execute($sql2);
-//            die("OK");
-//        } else {
-//            die("ERROR");
-//        }
+        if (isset($_POST) && is_numeric($_POST['id'])) {
+            $db = Loader::db();
+            $sql = "DELETE FROM dsEventCalendarTypes WHERE typeID = " . $this->post('id');
+            $db->Execute($sql);
+
+
+            $sql2 = "UPDATE dsEventCalendarEvents SET
+            type = 0
+            WHERE type=" . $this->post('id');
+            $db->Execute($sql2);
+            die("OK");
+        } else {
+            die("ERROR");
+        }
     }
 }

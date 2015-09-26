@@ -33,18 +33,18 @@ class Controller extends BlockController
         parent::__construct($b);
     }
 
-    public function on_page_view()
+    public function view()
     {
 
         $db = Loader::db();
         $calendar = $db->GetAll("SELECT * FROM dsEventCalendar WHERE calendarID=" . $this->calendarID);
         $this->set('calendar', $calendar);
 
-        Loader::library('dsEventCalendar','dsEventCalendar');
-        $dsEventCalendar = new dsEventCalendar();
+//        Loader::library('dsEventCalendar','dsEventCalendar');
+        $dsEventCalendar = new \dsEventCalendar\dsEventCalendar();
 
         $json_events = $dsEventCalendar->getEventsFromCalendar($this->calendarID,$this->typeID);
-        
+
 
         $this->set('events', $json_events);
         $this->set('settings',$dsEventCalendar->settingsProvider());
@@ -84,8 +84,8 @@ class Controller extends BlockController
 
         $this->set('langs', $this->lang_list);
 
-        Loader::library('dsEventCalendar','dsEventCalendar');
-        $dsEventCalendar = new dsEventCalendar();
+//        Loader::library('dsEventCalendar','dsEventCalendar');
+        $dsEventCalendar = new \dsEventCalendar\dsEventCalendar();
         $types = $dsEventCalendar->getEventTypesForBlock();
         $this->set('types',$types);
         $this->set('types',$types);
@@ -100,9 +100,9 @@ class Controller extends BlockController
 
         $this->set('langs', $this->lang_list);
         $this->set('lang',$this->lang);
-
-        Loader::library('dsEventCalendar','dsEventCalendar');
-        $dsEventCalendar = new dsEventCalendar();
+//
+//        Loader::library('dsEventCalendar','dsEventCalendar');
+        $dsEventCalendar = new \dsEventCalendar\dsEventCalendar();
         $types = $dsEventCalendar->getEventTypesForBlock();
         $this->set('types',$types);
         $this->set('typeID',$this->typeID);
