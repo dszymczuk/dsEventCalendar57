@@ -17,6 +17,7 @@ class ListCalendar extends DashboardPageController
         $db = Loader::db();
         $calendars = $db->GetAll("SELECT EC.*, count(ECE.eventID) as total_events FROM dsEventCalendar AS EC LEFT JOIN dsEventCalendarEvents AS ECE ON ECE.calendarID = EC.calendarID group by EC.calendarID");
         $this->set('calendars', $calendars);
+        $this->set('pageTitle',t("Calendar list"));
     }
 
     public function delete()

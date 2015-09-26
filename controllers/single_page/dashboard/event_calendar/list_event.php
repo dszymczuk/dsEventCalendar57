@@ -70,8 +70,8 @@ class ListEvent extends DashboardPageController
             $startDate = trim($this->post('eventStartDate')." ".$this->post('eventStartTime'));
             $endDate = trim($date_end." ".$this->post('eventEndTime'));
 
-            $startDate = new DateTime($startDate);
-            $endDate = new DateTime($endDate);
+            $startDate = new \DateTime($startDate);
+            $endDate = new \DateTime($endDate);
 
             $sql = "UPDATE dsEventCalendarEvents SET
                 calendarID = ?,
