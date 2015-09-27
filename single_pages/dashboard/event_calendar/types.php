@@ -120,7 +120,7 @@ $(document).ready(function () {
 	$('#color').ColorPicker({
 		onSubmit: function(hsb, hex, rgb, el) {
 			$('#color').val('#'+hex);
-			$(el).hide();
+			$('.colorpicker').hide();
 		}
 	});
 
