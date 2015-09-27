@@ -119,4 +119,14 @@ $blue-dark: darken($blue, 5%);
   }
 }
 
+.dsEventCalendar {
+  .fc-view-container .fc-event-container a.fc-event {
+    color: white;
+    &:hover {
+      color: white;
+      cursor: pointer;
+    }
+  }
+}
+
 @import "iehacks";

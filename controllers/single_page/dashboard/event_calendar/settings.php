@@ -9,13 +9,15 @@ class Settings extends DashboardPageController
 {
 	public function on_before_render()
     {
-        $this->addHeaderItem(Loader::helper('html')->css('colorpicker.min.css', 'dsEventCalendar'));
+        $this->addFooterItem(Loader::helper('html')->css('colorpicker.min.css', 'dsEventCalendar'));
         $this->addFooterItem(Loader::helper('html')->javascript('colorpicker.min.js', 'dsEventCalendar'));
-        $this->addHeaderItem(Loader::helper('html')->css('dsStyle.css', 'dsEventCalendar'));
+        $this->addFooterItem(Loader::helper('html')->css('dsStyle.css', 'dsEventCalendar'));
     }
 
     public function view()
     {
+        $this->set('pageTitle',t("Settings"));
+
  		$db = Loader::db();
         if (!empty($_POST)) {
 

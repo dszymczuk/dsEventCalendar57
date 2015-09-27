@@ -12,9 +12,9 @@ class ListEvent extends DashboardPageController
 
     public function on_before_render()
     {
-        $this->addHeaderItem(Loader::helper('html')->css('jquery.datetimepicker.min.css', 'dsEventCalendar'));
-        $this->addHeaderItem(Loader::helper('html')->css('fullcalendar.min.css', 'dsEventCalendar'));
-        $this->addHeaderItem(Loader::helper('html')->css('dsStyle.css', 'dsEventCalendar'));
+        $this->addFooterItem(Loader::helper('html')->css('jquery.datetimepicker.min.css', 'dsEventCalendar'));
+        $this->addFooterItem(Loader::helper('html')->css('fullcalendar.min.css', 'dsEventCalendar'));
+        $this->addFooterItem(Loader::helper('html')->css('dsStyle.css', 'dsEventCalendar'));
         $this->addFooterItem(Loader::helper('html')->javascript('moment.min.js', 'dsEventCalendar'));
         $this->addFooterItem(Loader::helper('html')->javascript('jquery.datetimepicker.min.js', 'dsEventCalendar'));
         $this->addFooterItem(Loader::helper('html')->javascript('fullcalendar.min.js', 'dsEventCalendar'));
@@ -37,6 +37,7 @@ class ListEvent extends DashboardPageController
         $this->set('settings', $dsEventCalendar->settingsProvider());
         $this->set('types', $dsEventCalendar->getEventTypes());
         $this->set('calendarID', $calendar_id);
+        $this->set('pageTitle',t("Events"));
     }
 
     public function getEvents()

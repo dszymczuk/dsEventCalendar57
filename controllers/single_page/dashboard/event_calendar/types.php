@@ -23,9 +23,9 @@ class Types extends DashboardPageController
 
     public function view()
     {
+        $this->set('pageTitle',t("Event types"));
+
         $db = Loader::db();
-
-
 
         if (!empty($_POST)){
             $isSomeValueEmpty = false;
