@@ -7,7 +7,7 @@ class Calendar extends DashboardPageController
 {
     public function on_before_render()
     {
-        $this->addHeaderItem(Loader::helper('html')->css('dsStyle.css', 'dsEventCalendar'));
+        $this->addFooterItem(Loader::helper('html')->css('dsStyle.css', 'dsEventCalendar'));
     }
 
     public function view()
@@ -34,6 +34,7 @@ class Calendar extends DashboardPageController
             'label' => t('Add calendar')
         ));
 
+        $this->set('pageTitle',t("Manage calendar"));
 
     }
 

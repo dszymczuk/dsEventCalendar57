@@ -10,14 +10,17 @@ class Event extends DashboardPageController
 
     public function on_before_render()
     {
-        $this->addHeaderItem(Loader::helper('html')->css('jquery.datetimepicker.min.css', 'dsEventCalendar'));
-        $this->addHeaderItem(Loader::helper('html')->css('dsStyle.css', 'dsEventCalendar'));
+        $this->addFooterItem(Loader::helper('html')->css('jquery.datetimepicker.min.css', 'dsEventCalendar'));
+        $this->addFooterItem(Loader::helper('html')->css('dsStyle.css', 'dsEventCalendar'));
         $this->addFooterItem(Loader::helper('html')->javascript('moment.min.js', 'dsEventCalendar'));
         $this->addFooterItem(Loader::helper('html')->javascript('jquery.datetimepicker.min.js', 'dsEventCalendar'));
     }
 
     public function view()
     {
+
+        $this->set('pageTitle',t("Manage event"));
+
         $db = Loader::db();
         if (!empty($_POST)) {
 
