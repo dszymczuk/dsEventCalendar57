@@ -421,7 +421,7 @@
 
                     $.ajax({
                         type: "post",
-                        url: '<?php echo $this->action("updateDateEventa");?>',
+                        url: '<?php echo $this->action("updateDateEvent");?>',
                         data: event_data,
                         success: function (data) {
                             dsEventCalendar.fullCalendar('refetchEvents');
