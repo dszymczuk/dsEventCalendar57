@@ -1,0 +1,132 @@
+//@import "reset";
+@import "compass/css3/border-radius";
+@import "compass/css3/flexbox";
+
+@mixin size($width, $height: nil) {
+  @if ($height == nil) {
+    width: $width;
+    height: $width;
+  } @else {
+    width: $width;
+    height: $height;
+  }
+
+}
+
+//
+// Base for dsEventCalendar
+//
+
+
+//
+// Variables
+// ----------------------
+
+$gray: #333;
+$gray-light: #aaa;
+$gray-lighter: #eee;
+$space: 40px;
+$blue: #428bca;
+$blue-dark: darken($blue, 5%);
+//
+// Buttons
+//
+.btn{
+  background: $blue;
+  border: $blue-dark solid 1px;
+  border-radius: 3px;
+  color: #fff;
+  display: inline-block;
+  font-size: 14px;
+  padding: 4px 10px;
+  text-decoration: none;
+  text-align: center;
+  min-width: 60px;
+  position: relative;
+  transition: color .1s ease;
+
+  &:hover{
+    background: $blue-dark;
+  }
+
+  &.btn-big{
+    font-size: 18px;
+    padding: 15px 20px;
+    min-width: 100px;
+  }
+}
+
+.btn-close{
+  text-decoration: none;
+  cursor: pointer;
+}
+
+//
+// Modal window
+//
+.ds-event-modal {
+  p {
+    margin: 0;
+    padding: 0;
+  }
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  text-align: center;
+  z-index: 1000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.5);
+  &.active {
+    @include display-flex();
+  }
+
+  .container {
+    min-width: 35%;
+    max-width: 90%;
+    max-height: 80%;
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid $gray;
+    text-align: center;
+    color: $gray;
+    border-radius: 5px;
+    .header {
+      font-size: 20px;
+      padding: $space/4;
+      border-bottom: 1px solid $gray-lighter;
+
+    }
+    .content {
+      .time {
+        padding-top: $space/4;
+        color: darken($gray-light,20%);
+
+      }
+      .description {
+        padding: $space/4 $space/2;
+        text-align: justify;
+      }
+    }
+    .footer {
+      border-top: 1px solid $gray-lighter;
+      padding: $space/4;
+    }
+  }
+}
+
+.dsEventCalendar {
+  .fc-view-container .fc-event-container a.fc-event {
+    color: white;
+    &:hover {
+      color: white;
+      cursor: pointer;
+    }
+  }
+}
+
+@import "iehacks";
