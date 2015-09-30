@@ -18,7 +18,6 @@ class Event extends DashboardPageController
 
     public function view()
     {
-
         $this->set('pageTitle',t("Manage event"));
 
         $db = Loader::db();
@@ -134,7 +133,5 @@ class Event extends DashboardPageController
             'class' => 'btn btn-success',
             'label' => t('Add event')
         ));
-
     }
-
 }
