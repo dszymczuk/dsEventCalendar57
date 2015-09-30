@@ -40,17 +40,13 @@ class Controller extends BlockController
         $calendar = $db->GetAll("SELECT * FROM dsEventCalendar WHERE calendarID=" . $this->calendarID);
         $this->set('calendar', $calendar);
 
-//        Loader::library('dsEventCalendar','dsEventCalendar');
         $dsEventCalendar = new \dsEventCalendar\dsEventCalendar();
 
         $json_events = $dsEventCalendar->getEventsFromCalendar($this->calendarID,$this->typeID);
 
-
         $this->set('events', $json_events);
         $this->set('settings',$dsEventCalendar->settingsProvider());
-
         $this->set('typeID',$this->typeID);
-
 
         if(method_exists($this->getBlockObject(),'getProxyBlock'))
         {
@@ -84,7 +80,6 @@ class Controller extends BlockController
 
         $this->set('langs', $this->lang_list);
 
-//        Loader::library('dsEventCalendar','dsEventCalendar');
         $dsEventCalendar = new \dsEventCalendar\dsEventCalendar();
         $types = $dsEventCalendar->getEventTypesForBlock();
         $this->set('types',$types);
@@ -100,66 +95,12 @@ class Controller extends BlockController
 
         $this->set('langs', $this->lang_list);
         $this->set('lang',$this->lang);
-//
-//        Loader::library('dsEventCalendar','dsEventCalendar');
+
         $dsEventCalendar = new \dsEventCalendar\dsEventCalendar();
         $types = $dsEventCalendar->getEventTypesForBlock();
         $this->set('types',$types);
         $this->set('typeID',$this->typeID);
     }
-
-
-//    private function getEventsFromCalendar($calendarID)
-//    {
-//        $db = Loader::db();
-//
-//        $q  = "SELECT ECE.eventID as id, ECE.*, ECT.* FROM dsEventCalendarEvents as ECE ";
-//        $q  .= " LEFT JOIN dsEventCalendarTypes as ECT on ECE.type = ECT.typeID ";
-//        $q  .= " WHERE calendarID =" . $calendarID;
-//
-//        $settings = $db->GetAll("SELECT * FROM dsEventCalendarSettings");
-//        foreach ($settings as $s) {
-//            $s['opt'] = $s['opt']."_dsECS";
-//            $$s['opt'] = $s['value'];
-//        }
-//
-//        $events = $db->GetAll($q);
-//
-//        foreach ($events as &$e) {
-//            unset($e['eventID']);
-//            unset($e['calendarID']);
-//            unset($e['typeID']);
-//            if($e['color'] == NULL)
-//            {
-//                $e['color'] = $default_color_dsECS;
-//                $e['type_name'] = $default_name_dsECS;
-//            }
-//            $e['start'] = $e['date'];
-//        }
-//
-//        $js = Loader::helper('json');
-//        return $js->encode($events);
-//    }
-
-//    public function settingsProvider()
-//    {
-//        $db = Loader::db();
-//        $settings = $db->GetAll("SELECT * FROM dsEventCalendarSettings");
-//        $set_return = array();
-//
-//        foreach ($settings as $s) {
-//            array_push($set_return, array(
-//                $s['opt'] => $s['value']
-//            ));
-//        }
-//
-//        array_push($set_return,array('closeText' => t('close')));
-//        array_push($set_return,array('typeText' => t('Type:')));
-//
-//        $js = Loader::helper('json');
-//        return $js->encode($set_return);
-//    }
-
 }
 
 ?>

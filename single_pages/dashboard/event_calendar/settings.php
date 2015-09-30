@@ -185,7 +185,7 @@ $(document).ready(function () {
 	$('#default_color').ColorPicker({
 		onSubmit: function(hsb, hex, rgb, el) {
 			$('#default_color').val('#'+hex);
-			$(el).hide();
+			$('.colorpicker').hide();
 		}
 	});
 
