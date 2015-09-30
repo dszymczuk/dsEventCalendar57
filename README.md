@@ -1,7 +1,7 @@
 dsEventCalendar
 ================
 
-[![Code Climate](https://codeclimate.com/github/dszymczuk/dsEventCalendar/badges/gpa.svg)](https://codeclimate.com/github/dszymczuk/dsEventCalendar)
+[![Code Climate](https://codeclimate.com/github/dszymczuk/dsEventCalendar57/badges/gpa.svg)](https://codeclimate.com/github/dszymczuk/dsEventCalendar57)
 
 Description
 ----
