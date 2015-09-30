@@ -88,7 +88,7 @@ $form = Loader::helper('form');
                                 <label class="control-label"><?php echo t('Event start date') ?> *</label>
 
                                 <div class="controls">
-                                    <input class="span3" maxlength="255" type="text" name="event_start_date" id="event_start_date" value="<?php echo ( isset( $event_start_date ) ) ? $event_start_date : ''; ?>">
+                                    <input class="form-control" maxlength="255" type="text" name="event_start_date" id="event_start_date" value="<?php echo ( isset( $event_start_date ) ) ? $event_start_date : ''; ?>">
                                 </div>
                             </fieldset>
 
@@ -98,7 +98,7 @@ $form = Loader::helper('form');
                                 <label class="control-label"><?php echo t('Event start time') ?></label>
 
                                 <div class="controls">
-                                    <input class="span3" maxlength="255" type="text" name="event_start_time" id="event_start_time" value="<?php echo ( isset( $event_start_time ) ) ? $event_start_time : ''; ?>">
+                                    <input class="form-control" maxlength="255" type="text" name="event_start_time" id="event_start_time" value="<?php echo ( isset( $event_start_time ) ) ? $event_start_time : ''; ?>">
                                 </div>
                             </fieldset>
                         </div>
@@ -109,7 +109,7 @@ $form = Loader::helper('form');
                                 <label class="control-label"><?php echo t('Event end date') ?> *</label>
 
                                 <div class="controls">
-                                    <input class="span3" maxlength="255" type="text" name="event_end_date" id="event_end_date" value="<?php echo ( isset( $event_end_date ) ) ? $event_end_date : ''; ?>">
+                                    <input class="form-control" maxlength="255" type="text" name="event_end_date" id="event_end_date" value="<?php echo ( isset( $event_end_date ) ) ? $event_end_date : ''; ?>">
                                 </div>
                             </fieldset>
 
@@ -119,7 +119,7 @@ $form = Loader::helper('form');
                                 <label class="control-label"><?php echo t('Event end time') ?></label>
 
                                 <div class="controls">
-                                    <input class="span3" maxlength="255" type="text" name="event_end_time" id="event_end_time" value="<?php echo ( isset( $event_end_time ) ) ? $event_end_time : ''; ?>">
+                                    <input class="form-control" maxlength="255" type="text" name="event_end_time" id="event_end_time" value="<?php echo ( isset( $event_end_time ) ) ? $event_end_time : ''; ?>">
                                 </div>
                             </fieldset>
                         </div>

@@ -19,15 +19,5 @@
 		</div>
 	</div>
 
-<div class="row">
-	<div class="span12">
-		<h3>AAA</h3>
-		<p>aaa</p>
-	</div>
-	<div class="span12">
-		<h3>BBB</h3>
-		<p>bbb</p>
-	</div>
-</div>
 
 <?php echo Loader::helper('concrete/dashboard')->getDashboardPaneFooterWrapper(); ?>
