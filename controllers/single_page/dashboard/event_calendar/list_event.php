@@ -29,7 +29,6 @@ class ListEvent extends DashboardPageController
 
     public function show($calendar_id)
     {
-        Loader::library('dsEventCalendar', 'dsEventCalendar');
         $dsEventCalendar = new dsEventCalendar();
 
         $json_events = $dsEventCalendar->getEventsFromCalendar($calendar_id);
@@ -42,8 +41,6 @@ class ListEvent extends DashboardPageController
 
     public function getEvents()
     {
-        Loader::library('dsEventCalendar', 'dsEventCalendar');
-
         $calendar_id = $this->get('calendarid');
         $dsEventCalendar = new dsEventCalendar();
         $json_events = $dsEventCalendar->getEventsFromCalendar($calendar_id);
@@ -188,7 +185,6 @@ class ListEvent extends DashboardPageController
     public function clearEvents($calendar_id)
     {
         if (is_numeric($calendar_id)) {
-            Loader::library('dsEventCalendar','dsEventCalendar');
             $dsEventCalendar = new dsEventCalendar();
             $dsEventCalendar->removeEventFromCalendar($calendar_id);
             $this->redirect("dashboard/event_calendar/list_calendar");

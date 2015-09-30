@@ -36,8 +36,6 @@ class Types extends DashboardPageController
             }
 
             if (!$isSomeValueEmpty) {
-
-
                 $sql = "INSERT INTO dsEventCalendarTypes (type,color) VALUES (?,?)";
 
                 $args = array(
@@ -89,7 +87,6 @@ class Types extends DashboardPageController
             $db = Loader::db();
             $sql = "DELETE FROM dsEventCalendarTypes WHERE typeID = " . $this->post('id');
             $db->Execute($sql);
-
 
             $sql2 = "UPDATE dsEventCalendarEvents SET
             type = 0

@@ -42,129 +42,130 @@
 
 
             <div class="container">
-                <div class="header">
-                    <div class="title"></div>
-                </div>
-                <div class="content">
-                    <div class="time"></div>
-                    <div class="description form-horizontal">
-                        <fieldset class="control-group">
-                            <label class="control-label"><?php echo t('Event title') ?>  *</label>
-
-                            <div class="controls">
-                                <input maxlength="255" type="text" name="event_title" id="event_title"
-                                       value="">
-                            </div>
-                        </fieldset>
-
-
-                        <div class="row">
-                            <div class="span3">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="header">
+                            <div class="title"></div>
+                        </div>
+                        <div class="content">
+                            <div class="time"></div>
+                            <div class="description form-horizontal">
                                 <fieldset class="control-group">
-                                    <label class="control-label"><?php echo t('Event start date') ?> *</label>
+                                    <label class="control-label"><?php echo t('Event title') ?>  *</label>
 
                                     <div class="controls">
-                                        <input class="span3" maxlength="255" type="text" name="event_start_date"
-                                               id="event_start_date" value="">
+                                        <input maxlength="255" type="text" name="event_title" id="event_title"
+                                               value="" class="form-control">
                                     </div>
                                 </fieldset>
 
-                            </div>
-                            <div class="offset2 span2">
-                                <fieldset class="control-group event_withtime">
-                                    <label class="control-label"><?php echo t('Event start time') ?></label>
 
-                                    <div class="controls">
-                                        <input class="span3" maxlength="255" type="text" name="event_start_time"
-                                               id="event_start_time" value="">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div>
+                                            <fieldset class="control-group">
+                                                <label class="control-label"><?php echo t('Event start date') ?> *</label>
+
+                                                <div class="controls">
+                                                    <input  class="form-control" maxlength="255" type="text" name="event_start_date" id="event_start_date" value="<?php echo ( isset( $event_start_date ) ) ? $event_start_date : ''; ?>">
+                                                </div>
+                                            </fieldset>
+
+                                        </div>
+                                        <div>
+                                            <fieldset class="control-group event_withtime">
+                                                <label class="control-label"><?php echo t('Event start time') ?></label>
+
+                                                <div class="controls">
+                                                    <input class="form-control" maxlength="255" type="text" name="event_start_time" id="event_start_time" value="<?php echo ( isset( $event_start_time ) ) ? $event_start_time : ''; ?>">
+                                                </div>
+                                            </fieldset>
+                                        </div>
                                     </div>
-                                </fieldset>
-                            </div>
-                        </div>
+                                    <div class="col-xs-6">
+                                        <div class="span3">
+                                            <fieldset class="control-group">
+                                                <label class="control-label"><?php echo t('Event end date') ?> *</label>
 
-                        <div class="row">
-                            <div class="span3">
+                                                <div class="controls">
+                                                    <input class="form-control" maxlength="255" type="text" name="event_end_date" id="event_end_date" value="<?php echo ( isset( $event_end_date ) ) ? $event_end_date : ''; ?>">
+                                                </div>
+                                            </fieldset>
+
+                                        </div>
+                                        <div class="offset2 span2">
+                                            <fieldset class="control-group event_withtime">
+                                                <label class="control-label"><?php echo t('Event end time') ?></label>
+
+                                                <div class="controls">
+                                                    <input class="form-control" maxlength="255" type="text" name="event_end_time" id="event_end_time" value="<?php echo ( isset( $event_end_time ) ) ? $event_end_time : ''; ?>">
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 <fieldset class="control-group">
-                                    <label class="control-label"><?php echo t('Event end date') ?> *</label>
+                                    <label class="control-label"><?php echo t('Event type') ?> *</label>
 
                                     <div class="controls">
-                                        <input class="span3" maxlength="255" type="text" name="event_end_date"
-                                               id="event_end_date" value="">
+                                        <?php $event_type = isset($event_type) ? $event_type : null; ?>
+                                        <select class="form-control" name="event_type" id="event_type" value="<?php echo $event_type; ?>">
+                                            <option value="0"><?php echo t("Default"); ?></option>
+
+                                            <?php foreach ($types as $t): ?>
+                                                <option value="<?php echo $t['typeID'] ?>"><?php echo $t['type'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
                                     </div>
                                 </fieldset>
 
-                            </div>
-                            <div class="offset2 span2">
-                                <fieldset class="control-group event_withtime">
-                                    <label class="control-label"><?php echo t('Event end time') ?></label>
+                                <div class="alert alert-info">
+                                    <p class="event_url"><?php echo t('If you set URL info type, after click on event it will redirct to URL. Window with details will NOT show! Description will be erase.'); ?></p>
+
+                                    <p class="event_description"><?php echo t('If you set Description info type, after click on event it will show window with details.'); ?></p>
+                                </div>
+
+                                <fieldset class="control-group event_info_type">
+                                    <label class="control-label"><?php echo t('Event info type') ?> *</label>
 
                                     <div class="controls">
-                                        <input class="span3" maxlength="255" type="text" name="event_end_time"
-                                               id="event_end_time" value="">
+                                        <button class="btn btn-primary desc"><?php echo t('Description') ?></button>
+                                        <button class="btn url"><?php echo t('URL') ?></button>
                                     </div>
                                 </fieldset>
-                            </div>
-                        </div>
 
 
-                        <fieldset class="control-group">
-                            <label class="control-label"><?php echo t('Event type') ?> *</label>
+                                <fieldset class="control-group event_description">
+                                    <label class="control-label"><?php echo t('Event description') ?></label>
 
-                            <div class="controls">
-                                <?php $event_type = isset($event_type) ? $event_type : null; ?>
-                                <select name="event_type" id="event_type" value="<?php echo $event_type; ?>">
-                                    <option value="0"><?php echo t("Default"); ?></option>
-
-                                    <?php foreach ($types as $t): ?>
-                                        <option value="<?php echo $t['typeID'] ?>"><?php echo $t['type'] ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                        </fieldset>
-
-                        <div class="alert alert-info">
-                            <p class="event_url"><?php echo t('If you set URL info type, after click on event it will redirct to URL. Window with details will NOT show! Description will be erase.'); ?></p>
-
-                            <p class="event_description"><?php echo t('If you set Description info type, after click on event it will show window with details.'); ?></p>
-                        </div>
-
-                        <fieldset class="control-group event_info_type">
-                            <label class="control-label"><?php echo t('Event info type') ?> *</label>
-
-                            <div class="controls">
-                                <button class="btn btn-primary desc"><?php echo t('Description') ?></button>
-                                <button class="btn url"><?php echo t('URL') ?></button>
-                            </div>
-                        </fieldset>
-
-
-                        <fieldset class="control-group event_description">
-                            <label class="control-label"><?php echo t('Event description') ?></label>
-
-                            <div class="controls">
+                                    <div class="controls">
                                 <textarea rows="5" name="event_description"
-                                          id="event_description"></textarea>
+                                          id="event_description" class="form-control"></textarea>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="control-group event_url" style="display: none;">
+                                    <label class="control-label"><?php echo t('Event url') ?></label>
+
+                                    <div class="controls">
+                                        <input maxlength="255" type="text" name="event_url" id="event_url"
+                                               value="" class="form-control">
+                                    </div>
+
+                                </fieldset>
                             </div>
-                        </fieldset>
-                        <fieldset class="control-group event_url" style="display: none;">
-                            <label class="control-label"><?php echo t('Event url') ?></label>
+                        </div>
+                        <div id="update_message" class="alert">
 
-                            <div class="controls">
-                                <input maxlength="255" type="text" name="event_url" id="event_url"
-                                       value="">
+                        </div>
+                        <div class="footer">
+                            <div class="buttons">
+                                <div class="pull-left btn btn-danger"><?php echo t("Remove") ?></div>
+                                <div class="btn btn-close"><?php echo t("Close") ?></div>
+                                <div class="pull-right btn btn-success btn-update"><?php echo t("Update") ?></div>
                             </div>
-
-                        </fieldset>
-                    </div>
-                </div>
-                <div id="update_message" class="alert">
-
-                </div>
-                <div class="footer">
-                    <div class="buttons">
-                        <div class="pull-left btn btn-danger"><?php echo t("Remove") ?></div>
-                        <div class="btn btn-close"><?php echo t("Close") ?></div>
-                        <div class="pull-right btn btn-success btn-update"><?php echo t("Update") ?></div>
+                        </div>
                     </div>
                 </div>
             </div>
