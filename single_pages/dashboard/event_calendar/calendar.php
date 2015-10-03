@@ -22,12 +22,12 @@ $form = Loader::helper('form');
 
     <h3><?php echo t('Add / edit calendar') ?></h3>
 
-    <form class="form-horizontal" method="post" id="ccm-multilingual-page-report-form" style="margin-top: 35px;">
+    <form class="form-horizontal col-xs-6" method="post" id="ccm-multilingual-page-report-form" style="margin-top: 35px;">
         <fieldset class="control-group">
             <label class="control-label"><?php echo t('Calendar title') ?></label>
 
             <div class="controls">
-                <input maxlength="255" type="text" name="calendar_title" id="calendar_title" value="<?php echo ( isset( $calendar_title ) ) ? $calendar_title : ''; ?>">
+                <input maxlength="255" class="form-control col-xs-6" type="text" name="calendar_title" id="calendar_title" value="<?php echo ( isset( $calendar_title ) ) ? $calendar_title : ''; ?>">
             </div>
         </fieldset>
 
@@ -36,6 +36,7 @@ $form = Loader::helper('form');
             <div class="clearfix">
                 <div style="margin-top: 10px;">
                     <input class="<?php echo $button['class'] ?>" type="submit" value="<?php echo $button['label'] ?>">
+                    <a class="btn btn-default" href="<?php echo View::url('dashboard/event_calendar/list_calendar') ?>"><?php echo t('Return to calendar list'); ?></a>
                 </div>
             </div>
         </fieldset>
