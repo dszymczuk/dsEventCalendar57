@@ -78,7 +78,7 @@
                     <a href="<?php echo View::url('dashboard/event_calendar/calendar/update/' . $cal['calendarID']) ?>"
                        class="btn btn-warning edit"><?php echo t('Edit') ?></a>
                     <a href="<?php echo View::url('dashboard/event_calendar/list_event/clearEvents/' . $cal['calendarID']) ?>"
-                       class="btn btn-info edit"><?php echo t('Remove all events') ?></a>
+                       class="btn btn-info clearEvents edit"><?php echo t('Remove all events') ?></a>
                     <button class="btn btn-danger delete"><?php echo t('Delete') ?></button>
                 </td>
             </tr>
@@ -88,10 +88,14 @@
 
     <script>
         $(document).ready(function () {
+            $(".clearEvents").click(function () {
+                return confirm("<?php echo t("Are you sure to remove all events?"); ?>");
+            });
+            
             $(".delete").click(function () {
                 var elem = $(this);
                 var count_evetns = elem.closest('tr').children('td').children('span.badge').html();
-                var conf = confirm("Are you sure to delete this calendar with all events? Events in this calendar: " + count_evetns);
+                var conf = confirm("<?php t("Are you sure to delete this calendar with all events? Events in this calendar:") ?> " + count_evetns);
                 if (conf) {
                     var id = elem.closest('tr').children('td').children('input.calendarID').val();
                     elem.closest('tr').addClass('toRemove');
