@@ -17,9 +17,9 @@
                href="<?php echo View::url('dashboard/event_calendar/event') ?>"><?php echo t('Add / edit event'); ?></a>
         </div>
         <div class="btn-group">
-            <a class="btn"
+            <a class="btn btn-default"
                href="<?php echo View::url('dashboard/event_calendar/types') ?>"><?php echo t('Type of events'); ?></a>
-            <a class="btn"
+            <a class="btn btn-default"
                href="<?php echo View::url('dashboard/event_calendar/settings') ?>"><?php echo t('Settings'); ?></a>
         </div>
     </div>
@@ -162,7 +162,7 @@
                         <div class="footer">
                             <div class="buttons">
                                 <div class="pull-left btn btn-danger"><?php echo t("Remove") ?></div>
-                                <div class="btn btn-close"><?php echo t("Close") ?></div>
+                                <div class="btn btn-close  btn-default"><?php echo t("Close") ?></div>
                                 <div class="pull-right btn btn-success btn-update"><?php echo t("Update") ?></div>
                             </div>
                         </div>
