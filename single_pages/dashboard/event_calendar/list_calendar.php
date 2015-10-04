@@ -3,19 +3,17 @@
 
 <?php echo Loader::helper('concrete/dashboard')->getDashboardPaneHeaderWrapper(t('Event Calendar')); ?>
 
-    <div class="dsMenu">
-        <div class="btn-toolbar">
-            <div class="btn-group">
-                <a class="btn btn-primary" href="<?php echo View::url('dashboard/event_calendar/list_calendar') ?>"><?php echo t('Calendars list'); ?>&nbsp;/&nbsp;<?php echo t('Manage events'); ?></a>
-            </div>
-            <div class="btn-group">
-                <a class="btn btn-success" href="<?php echo View::url('dashboard/event_calendar/calendar') ?>"><?php echo t('Add / edit calendar'); ?></a>
-                <a class="btn btn-success" href="<?php echo View::url('dashboard/event_calendar/event') ?>"><?php echo t('Add / edit event'); ?></a>
-            </div>
-            <div class="btn-group">
-                <a class="btn btn-default" href="<?php echo View::url('dashboard/event_calendar/types') ?>"><?php echo t('Type of events'); ?></a>
-                <a class="btn btn-default" href="<?php echo View::url('dashboard/event_calendar/settings') ?>"><?php echo t('Settings'); ?></a>
-            </div>
+    <div class="ccm-dashboard-header-buttons">
+        <div class="btn-group">
+            <a class="btn btn-primary" href="<?php echo View::url('dashboard/event_calendar/list_calendar') ?>"><?php echo t('Calendars list'); ?>&nbsp;/&nbsp;<?php echo t('Manage events'); ?></a>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-success" href="<?php echo View::url('dashboard/event_calendar/calendar') ?>"><?php echo t('Add calendar'); ?></a>
+            <a class="btn btn-success" href="<?php echo View::url('dashboard/event_calendar/event') ?>"><?php echo t('Add event'); ?></a>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-default" href="<?php echo View::url('dashboard/event_calendar/types') ?>"><?php echo t('Type of events'); ?></a>
+            <a class="btn btn-default" href="<?php echo View::url('dashboard/event_calendar/settings') ?>"><?php echo t('Settings'); ?></a>
         </div>
     </div>
 
@@ -78,7 +76,7 @@
                     <a href="<?php echo View::url('dashboard/event_calendar/calendar/update/' . $cal['calendarID']) ?>"
                        class="btn btn-warning edit"><?php echo t('Edit') ?></a>
                     <a href="<?php echo View::url('dashboard/event_calendar/list_event/clearEvents/' . $cal['calendarID']) ?>"
-                       class="btn btn-info edit"><?php echo t('Remove all events') ?></a>
+                       class="btn btn-info clearEvents edit"><?php echo t('Remove all events') ?></a>
                     <button class="btn btn-danger delete"><?php echo t('Delete') ?></button>
                 </td>
             </tr>
@@ -88,10 +86,14 @@
 
     <script>
         $(document).ready(function () {
+            $(".clearEvents").click(function () {
+                return confirm("<?php echo t("Are you sure to remove all events?"); ?>");
+            });
+
             $(".delete").click(function () {
                 var elem = $(this);
                 var count_evetns = elem.closest('tr').children('td').children('span.badge').html();
-                var conf = confirm("Are you sure to delete this calendar with all events? Events in this calendar: " + count_evetns);
+                var conf = confirm("<?php t("Are you sure to delete this calendar with all events? Events in this calendar:") ?> " + count_evetns);
                 if (conf) {
                     var id = elem.closest('tr').children('td').children('input.calendarID').val();
                     elem.closest('tr').addClass('toRemove');
