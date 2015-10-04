@@ -127,7 +127,7 @@ $form = Loader::helper('form');
 
 
                 <fieldset class="control-group">
-                    <label class="control-label"><?php echo t('Event type - color') ?> *</label>
+                    <label class="control-label"><?php echo t('Event type - color') ?></label>
 
                     <div class="controls">
                         <?php $event_type = isset( $event_type ) ? $event_type : null; ?>
