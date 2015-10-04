@@ -91,7 +91,7 @@
             $(".clearEvents").click(function () {
                 return confirm("<?php echo t("Are you sure to remove all events?"); ?>");
             });
-            
+
             $(".delete").click(function () {
                 var elem = $(this);
                 var count_evetns = elem.closest('tr').children('td').children('span.badge').html();

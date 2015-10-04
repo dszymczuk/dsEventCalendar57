@@ -52,12 +52,14 @@
 			<fieldset class="control-group">
 				<label class="control-label"><?php echo t('Event date format') ?></label>
 				<div class="controls">
+					<p><small><?php echo t("Format will be apply only on calendar view - not while adding or editing") ?></small></p>
 					<input maxlength="255" class="form-control" type="text" name="formatEvent" id="formatEvent" value="<?php echo $formatEvent; ?>">
 				</div>
 			</fieldset>
 
 			<fieldset class="control-group">
 				<label class="control-label"><?php echo t('Event time format') ?></label>
+				<p><small><?php echo t("Format will be apply only on calendar view - not while adding or editing") ?></small></p>
 				<div class="controls">
 					<input maxlength="255" class="form-control" type="text" name="timeFormat" id="timeFormat" value="<?php echo $timeFormat; ?>">
 				</div>
@@ -149,6 +151,7 @@
 	</div>
 	<div class="col-xs-5 col-xs-offset-1">
 		<h3><?php echo t('Help') ?></h3>
+		<blockquote><p><?php echo t('Create calendar and add event to created calendar.'); ?></p></blockquote>
 		<blockquote>
 			<p><?php echo t('After add event go to Calendar list -> show events for calendar. At now, you can manage events.'); ?></p>
 		</blockquote>
@@ -182,17 +185,17 @@
 <script>
 $(document).ready(function () {
 
-	$('#default_color').ColorPicker({
+	var default_color_element = $('#default_color');
+
+	default_color_element.ColorPicker({
 		onSubmit: function(hsb, hex, rgb, el) {
-			$('#default_color').val('#'+hex);
+			default_color_element.val('#'+hex);
 			$('.colorpicker').hide();
 		}
 	});
 
-	var default_color = $('#default_color').val();
-    $('#default_color').ColorPickerSetColor(default_color);
-
-
+	var default_color = default_color_element.val();
+    default_color_element.ColorPickerSetColor(default_color);
 });
 </script>
 
