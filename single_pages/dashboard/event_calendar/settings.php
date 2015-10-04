@@ -1,27 +1,22 @@
 <?php defined('C5_EXECUTE') or die('Access denied.'); ?>
 <?php echo Loader::helper('concrete/dashboard')->getDashboardPaneHeaderWrapper(t('Event Calendar')); ?>
 
-	<div class="dsMenu">
-		<div class="btn-toolbar">
-			<div class="btn-group">
-				<a class="btn btn-primary" href="<?php echo View::url('dashboard/event_calendar/list_calendar') ?>"><?php echo t('Calendars list'); ?>&nbsp;/&nbsp;<?php echo t('Manage events'); ?></a>
-			</div>
-			<div class="btn-group">
-				<a class="btn btn-success" href="<?php echo View::url('dashboard/event_calendar/calendar') ?>"><?php echo t('Add / edit calendar'); ?></a>
-				<a class="btn btn-success" href="<?php echo View::url('dashboard/event_calendar/event') ?>"><?php echo t('Add / edit event'); ?></a>
-			</div>
-			<div class="btn-group">
-				<a class="btn btn-default" href="<?php echo View::url('dashboard/event_calendar/types') ?>"><?php echo t('Type of events'); ?></a>
-				<a class="btn btn-default" href="<?php echo View::url('dashboard/event_calendar/settings') ?>"><?php echo t('Settings'); ?></a>
-			</div>
+	<div class="ccm-dashboard-header-buttons">
+		<div class="btn-group">
+			<a class="btn btn-primary" href="<?php echo View::url('dashboard/event_calendar/list_calendar') ?>"><?php echo t('Calendars list'); ?>&nbsp;/&nbsp;<?php echo t('Manage events'); ?></a>
+		</div>
+		<div class="btn-group">
+			<a class="btn btn-success" href="<?php echo View::url('dashboard/event_calendar/calendar') ?>"><?php echo t('Add calendar'); ?></a>
+			<a class="btn btn-success" href="<?php echo View::url('dashboard/event_calendar/event') ?>"><?php echo t('Add event'); ?></a>
+		</div>
+		<div class="btn-group">
+			<a class="btn btn-default" href="<?php echo View::url('dashboard/event_calendar/types') ?>"><?php echo t('Type of events'); ?></a>
+			<a class="btn btn-default" href="<?php echo View::url('dashboard/event_calendar/settings') ?>"><?php echo t('Settings'); ?></a>
 		</div>
 	</div>
 
 <div class="row">
 	<div class="col-xs-6">
-		<h3><?php echo t('Settings') ?></h3>
-
-
 
 		<form class="form-horizontal" method="post" id="ccm-multilingual-page-report-form" style="margin-top: 15px;">
 
@@ -52,12 +47,14 @@
 			<fieldset class="control-group">
 				<label class="control-label"><?php echo t('Event date format') ?></label>
 				<div class="controls">
+					<p><small><?php echo t("Format will be apply only on calendar view - not while adding or editing") ?></small></p>
 					<input maxlength="255" class="form-control" type="text" name="formatEvent" id="formatEvent" value="<?php echo $formatEvent; ?>">
 				</div>
 			</fieldset>
 
 			<fieldset class="control-group">
 				<label class="control-label"><?php echo t('Event time format') ?></label>
+				<p><small><?php echo t("Format will be apply only on calendar view - not while adding or editing") ?></small></p>
 				<div class="controls">
 					<input maxlength="255" class="form-control" type="text" name="timeFormat" id="timeFormat" value="<?php echo $timeFormat; ?>">
 				</div>
@@ -149,6 +146,7 @@
 	</div>
 	<div class="col-xs-5 col-xs-offset-1">
 		<h3><?php echo t('Help') ?></h3>
+		<blockquote><p><?php echo t('Create calendar and add event to created calendar.'); ?></p></blockquote>
 		<blockquote>
 			<p><?php echo t('After add event go to Calendar list -> show events for calendar. At now, you can manage events.'); ?></p>
 		</blockquote>
@@ -182,17 +180,17 @@
 <script>
 $(document).ready(function () {
 
-	$('#default_color').ColorPicker({
+	var default_color_element = $('#default_color');
+
+	default_color_element.ColorPicker({
 		onSubmit: function(hsb, hex, rgb, el) {
-			$('#default_color').val('#'+hex);
+			default_color_element.val('#'+hex);
 			$('.colorpicker').hide();
 		}
 	});
 
-	var default_color = $('#default_color').val();
-    $('#default_color').ColorPickerSetColor(default_color);
-
-
+	var default_color = default_color_element.val();
+    default_color_element.ColorPickerSetColor(default_color);
 });
 </script>
 

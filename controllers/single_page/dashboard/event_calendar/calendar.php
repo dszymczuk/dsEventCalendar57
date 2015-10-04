@@ -40,6 +40,8 @@ class Calendar extends DashboardPageController
 
     public function update($calendar_id)
     {
+        $this->set('pageTitle',t("Manage calendar"));
+
         if (is_numeric($calendar_id)) {
             $db = Loader::db();
             $sql = "SELECT * FROM dsEventCalendar WHERE calendarID=" . $calendar_id;
