@@ -69,6 +69,7 @@ class Controller extends BlockController
         $args['calendarID'] = isset($data['calendarID']) ? intval($data['calendarID']) : 0;
         $args['typeID'] = isset($data['typeID']) ? intval($data['typeID']) : 0;
         $args['lang'] = isset($data['lang']) ? $data['lang'] : 'en-gb';
+        $args['contentHeight'] = isset($data['contentHeight']) ? $data['contentHeight'] : 'auto';
         parent::save($args);
     }
 
@@ -79,6 +80,7 @@ class Controller extends BlockController
         $this->set('calendars', $calendars);
 
         $this->set('langs', $this->lang_list);
+        $this->set('lang','en-gb');
 
         $dsEventCalendar = new \dsEventCalendar\dsEventCalendar();
         $types = $dsEventCalendar->getEventTypesForBlock();
@@ -95,6 +97,7 @@ class Controller extends BlockController
 
         $this->set('langs', $this->lang_list);
         $this->set('lang',$this->lang);
+        $this->set('contentHeight',$this->contentHeight);
 
         $dsEventCalendar = new \dsEventCalendar\dsEventCalendar();
         $types = $dsEventCalendar->getEventTypesForBlock();
