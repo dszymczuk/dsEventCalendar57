@@ -18,6 +18,8 @@ class Event extends DashboardPageController
 
     public function view()
     {
+        $this->requireAsset('javascript', 'jquery');
+
         $this->set('pageTitle',t("Manage event"));
 
         $db = Loader::db();

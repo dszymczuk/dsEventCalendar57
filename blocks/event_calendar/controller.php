@@ -35,6 +35,7 @@ class Controller extends BlockController
 
     public function view()
     {
+        $this->requireAsset('javascript', 'jquery');
 
         $db = Loader::db();
         $calendar = $db->GetAll("SELECT * FROM dsEventCalendar WHERE calendarID=" . $this->calendarID);
