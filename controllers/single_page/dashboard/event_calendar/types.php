@@ -23,6 +23,7 @@ class Types extends DashboardPageController
 
     public function view()
     {
+        $this->requireAsset('javascript', 'jquery');
         $this->set('pageTitle',t("Event types"));
 
         $db = Loader::db();
