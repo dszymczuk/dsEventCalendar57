@@ -84,7 +84,7 @@ class Controller extends BlockController
         $r .= "\nVERSION:2.0";
         $r .= "\nMETHOD:PUBLISH";
         $r .= "\nX-WR-CALNAME;VALUE=TEXT:".$caltitle;
-        $r .= "\nPRODID:-//".Config::get("SITE", $getFullObject=false)."//".$caltitle."//".Config::get("SITE_LOCALE", $getFullObject=false);
+        $r .= "\nPRODID:-//".Config::get('concrete.site')."//".$caltitle;
 
         while ( $e = $events->fetch()) {
             $r .= "\nBEGIN:VEVENT";
