@@ -67,6 +67,58 @@ class Controller extends BlockController
         }
 
     }
+        
+    public function action_ical()
+    {
+        $db = Loader::db();
+        $caltitle = $db->fetchColumn("select title from dsEventCalendar where calendarID = ?", array($this->calendarID), 0);
+        if ($this->calendarID == 0) {
+            $events = $db->query("select * from dsEventCalendarEvents");
+        } else {
+            $events = $db->prepare("select * from dsEventCalendarEvents where calendarID = :cid");
+            $events->bindValue("cid", $this->calendarID);
+            $events->execute();
+        }
+        
+        $r  = "BEGIN:VCALENDAR";
+        $r .= "\nVERSION:2.0";
+        $r .= "\nMETHOD:PUBLISH";
+        $r .= "\nX-WR-CALNAME;VALUE=TEXT:".$caltitle;
+        $r .= "\nPRODID:-//".Config::get("SITE", $getFullObject=false)."//".$caltitle."//".Config::get("SITE_LOCALE", $getFullObject=false);
+
+        while ( $e = $events->fetch()) {
+            $r .= "\nBEGIN:VEVENT";
+            $r .= "\nMETHOD:PUBLISH";
+            $r .= "\nDTSTART:" . $this->dateToCal( $e["date"] );
+            $r .= "\nDTEND:" . $this->dateToCal( $e["end"] );
+            $r .= "\nSUMMARY:".$this->se($e["title"]);
+            $r .= "\nUID:".$e["eventID"];
+            $r .= "\nDESCRIPTION:".$this->se($e["description"]);
+            $r .= "\nCLASS:PUBLIC";
+            $r .= "\nSTATUS:CONFIRMED";
+            $r .= "\nEND:VEVENT";
+        }
+
+        $r .= "\nEND:VCALENDAR";
+
+        $response = new \Symfony\Component\HttpFoundation\Response();
+        $response->setContent($r);
+        $response->headers->set('Content-Type', 'text/calendar; charset=utf-8');
+        return $response;
+    }
+    
+    private function dateToCal($timestamp) {
+        return gmdate("Y-m-d\TH:i:s\Z", strtotime($timestamp));
+    }
+    
+    private function se($s) 
+    {
+        return preg_replace(
+            array ('/"/','/,/','/\n/','/\r/','/:/','/;/','/\\//'), 
+            array ('\"','\\,','\\n','','\:','\\;','\\\\'), 
+            $s
+        );
+    }
 
     function save($data)
     {
