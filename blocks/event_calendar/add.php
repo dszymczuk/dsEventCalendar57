@@ -5,7 +5,8 @@ $this->inc('form_setup_html.php',
         'calendars' => $calendars,
         'langs' => $langs,
         'calendarID' => null,
-        'lang' => null,
-        'types' => $types
+        'lang' => $lang,
+        'types' => $types,
+        'contentHeight' => null
     ));
 ?>

@@ -16,6 +16,7 @@ class Settings extends DashboardPageController
 
     public function view()
     {
+        $this->requireAsset('javascript', 'jquery');
         $this->set('pageTitle',t("Settings"));
 
  		$db = Loader::db();

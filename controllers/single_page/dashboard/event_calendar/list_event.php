@@ -29,6 +29,7 @@ class ListEvent extends DashboardPageController
 
     public function show($calendar_id)
     {
+        $this->requireAsset('javascript', 'jquery');
         $dsEventCalendar = new dsEventCalendar();
 
         $json_events = $dsEventCalendar->getEventsFromCalendar($calendar_id);
