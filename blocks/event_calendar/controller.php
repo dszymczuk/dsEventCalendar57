@@ -67,7 +67,7 @@ class Controller extends BlockController
         }
 
     }
-        
+
     public function action_ical()
     {
         $db = Loader::db();
@@ -80,38 +80,46 @@ class Controller extends BlockController
             $events->execute();
         }
         
-        $r  = "BEGIN:VCALENDAR";
-        $r .= "\nVERSION:2.0";
-        $r .= "\nMETHOD:PUBLISH";
-        $r .= "\nX-WR-CALNAME;VALUE=TEXT:".$caltitle;
-        $r .= "\nPRODID:-//".Config::get('concrete.site')."//".$caltitle;
+        $ical = "";
+        $this->icalPush($ical, "BEGIN", "VCALENDAR");
+        $this->icalPush($ical, "VERSION", "2.0");
+        $this->icalPush($ical, "METHOD", "PUBLISH");
+        $this->icalPush($ical, "X-WR-CALNAME", $caltitle, ";VALUE=TEXT");
+        $this->icalPush($ical, "PRODID", "-//".Config::get('concrete.site')."//".$caltitle);
 
         while ( $e = $events->fetch()) {
-            $r .= "\nBEGIN:VEVENT";
-            $r .= "\nMETHOD:PUBLISH";
-            $r .= "\nDTSTART:" . $this->dateToCal( $e["date"] );
-            $r .= "\nDTEND:" . $this->dateToCal( $e["end"] );
-            $r .= "\nSUMMARY:".$this->se($e["title"]);
-            $r .= "\nUID:".$e["eventID"];
-            $r .= "\nDESCRIPTION:".$this->se($e["description"]);
-            $r .= "\nCLASS:PUBLIC";
-            $r .= "\nSTATUS:CONFIRMED";
-            $r .= "\nEND:VEVENT";
+            $this->icalPush($ical, "BEGIN", "VEVENT");
+            $this->icalPush($ical, "METHOD", "PUBLISH");
+            $this->icalPush($ical, "DTSTART", $this->icalDateToCal( $e["date"] ));
+            $this->icalPush($ical, "DTEND", $this->icalDateToCal( $e["end"] ));
+            $this->icalPush($ical, "SUMMARY", $this->icalConvertSpecialCharacters($e["title"]));
+            $this->icalPush($ical, "UID", $e["eventID"]);
+            $this->icalPush($ical, "URL", $e["url"]);
+            $this->icalPush($ical, "DESCRIPTION", $this->icalConvertSpecialCharacters($e["description"]));
+            $this->icalPush($ical, "CLASS", "PUBLIC");
+            $this->icalPush($ical, "STATUS", "CONFIRMED");
+            $this->icalPush($ical, "END", "VEVENT");
         }
 
-        $r .= "\nEND:VCALENDAR";
+        $this->icalPush($ical, "END", "VCALENDAR");
 
         $response = new \Symfony\Component\HttpFoundation\Response();
-        $response->setContent($r);
+        $response->setContent($ical);
         $response->headers->set('Content-Type', 'text/calendar; charset=utf-8');
         return $response;
     }
     
-    private function dateToCal($timestamp) {
+    private function icalPush(&$icalFile, $Name, $Value, $Options = "")
+    {
+        if ($Name != "" && $Value != "")
+            $icalFile .= $Name.$Options.":".$Value."\n";
+    }
+    
+    private function icalDateToCal($timestamp) {
         return gmdate("Y-m-d\TH:i:s\Z", strtotime($timestamp));
     }
     
-    private function se($s) 
+    private function icalConvertSpecialCharacters($s) 
     {
         return preg_replace(
             array ('/"/','/,/','/\n/','/\r/','/:/','/;/','/\\//'), 
@@ -119,7 +127,7 @@ class Controller extends BlockController
             $s
         );
     }
-
+    
     function save($data)
     {
         $args['calendarID'] = isset($data['calendarID']) ? intval($data['calendarID']) : 0;
