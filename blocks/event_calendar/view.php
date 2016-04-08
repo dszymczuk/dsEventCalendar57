@@ -37,6 +37,9 @@ $c = Page::getCurrentPage();
                 </div>
             </div>
         </div>
+        <?php if (!$c->isEditMode()): ?>
+            <a href="<?php echo $view->action('ical')?>">iCal</a>
+        <?php endif; ?>
     </div>
 
 <?php if (!$c->isEditMode()): ?>
