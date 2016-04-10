@@ -25,10 +25,13 @@ If you choose "One day with time" event you can resize event for more days.
 
 Version
 ----
-3.3.5
+3.3.6
 
 Changelog
 ----
+3.3.6
+Add iCal link to block calendar
+
 3.3.5
 Bug fixes - wrong date on modal ; twice open modal when click on list (PRO)
 Possibility to change events from ALL calendars on calendar view
