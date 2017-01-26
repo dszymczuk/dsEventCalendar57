@@ -25,10 +25,13 @@ If you choose "One day with time" event you can resize event for more days.
 
 Version
 ----
-3.3.6
+3.4
 
 Changelog
-----
+---------
+3.4
+Apply to Concrete 5.8
+
 3.3.6
 Add iCal link to block calendar
 
