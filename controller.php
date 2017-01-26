@@ -12,7 +12,7 @@ class Controller extends Package {
 
     protected $pkgHandle = 'dsEventCalendar';
     protected $appVersionRequired = '5.7.0.4';
-    protected $pkgVersion = '3.3.6';
+    protected $pkgVersion = '3.4';
     protected $pkgAutoloaderRegistries = array(
         'src/dsEventCalendar' => '\dsEventCalendar'
     );
