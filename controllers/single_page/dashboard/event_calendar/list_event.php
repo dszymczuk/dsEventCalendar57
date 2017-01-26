@@ -1,5 +1,6 @@
 <?php
 namespace Concrete\Package\Dseventcalendar\Controller\SinglePage\Dashboard\EventCalendar;
+
 use \Concrete\Core\Page\Controller\DashboardPageController;
 use dsEventCalendar\dsEventCalendar;
 use Loader;
@@ -9,18 +10,6 @@ defined('C5_EXECUTE') or die("Access Denied.");
 
 class ListEvent extends DashboardPageController
 {
-
-    public function on_before_render()
-    {
-        $this->addFooterItem(Loader::helper('html')->css('jquery.datetimepicker.min.css', 'dsEventCalendar'));
-        $this->addFooterItem(Loader::helper('html')->css('fullcalendar.min.css', 'dsEventCalendar'));
-        $this->addFooterItem(Loader::helper('html')->css('dsStyle.css', 'dsEventCalendar'));
-        $this->addFooterItem(Loader::helper('html')->javascript('moment.min.js', 'dsEventCalendar'));
-        $this->addFooterItem(Loader::helper('html')->javascript('jquery.datetimepicker.min.js', 'dsEventCalendar'));
-        $this->addFooterItem(Loader::helper('html')->javascript('fullcalendar.min.js', 'dsEventCalendar'));
-        $this->addFooterItem(Loader::helper('html')->javascript('lang-all.js', 'dsEventCalendar'));
-    }
-
     public function view()
     {
         //redirect if param is not exist
@@ -29,6 +18,13 @@ class ListEvent extends DashboardPageController
 
     public function show($calendar_id)
     {
+        $this->addFooterItem(Loader::helper('html')->css('jquery.datetimepicker.min.css', 'dsEventCalendar'));
+        $this->addFooterItem(Loader::helper('html')->css('fullcalendar.min.css', 'dsEventCalendar'));
+        $this->addFooterItem(Loader::helper('html')->css('dsStyle.css', 'dsEventCalendar'));
+        $this->addFooterItem(Loader::helper('html')->javascript('moment.min.js', 'dsEventCalendar'));
+        $this->addFooterItem(Loader::helper('html')->javascript('jquery.datetimepicker.min.js', 'dsEventCalendar'));
+        $this->addFooterItem(Loader::helper('html')->javascript('fullcalendar.min.js', 'dsEventCalendar'));
+        $this->addFooterItem(Loader::helper('html')->javascript('lang-all.js', 'dsEventCalendar'));
         $this->requireAsset('javascript', 'jquery');
         $dsEventCalendar = new dsEventCalendar();
 
@@ -37,7 +33,7 @@ class ListEvent extends DashboardPageController
         $this->set('settings', $dsEventCalendar->settingsProvider());
         $this->set('types', $dsEventCalendar->getEventTypes());
         $this->set('calendarID', $calendar_id);
-        $this->set('pageTitle',t("Events"));
+        $this->set('pageTitle', t("Events"));
     }
 
     public function getEvents()
@@ -60,14 +56,14 @@ class ListEvent extends DashboardPageController
 
 
             $date = date_create($_POST['eventEndDate']);
-            if($_POST['eventStartDate'] != $_POST['eventEndDate'])
+            if ($_POST['eventStartDate'] != $_POST['eventEndDate'])
                 $date = date_add($date, date_interval_create_from_date_string('1 day'));
 
 
-            $date_end = date_format($date,"Y-m-d");
+            $date_end = date_format($date, "Y-m-d");
 
-            $startDate = trim($this->post('eventStartDate')." ".$this->post('eventStartTime'));
-            $endDate = trim($date_end." ".$this->post('eventEndTime'));
+            $startDate = trim($this->post('eventStartDate') . " " . $this->post('eventStartTime'));
+            $endDate = trim($date_end . " " . $this->post('eventEndTime'));
 
             $startDate = new \DateTime($startDate);
             $endDate = new \DateTime($endDate);
@@ -103,14 +99,14 @@ class ListEvent extends DashboardPageController
         die("ERROR");
     }
 
-    public function removeEvent(){
+    public function removeEvent()
+    {
         if (isset($_POST) && !empty($_POST)) {
             $eventID = $this->post('eventID');
-            if(is_numeric($eventID))
-            {
+            if (is_numeric($eventID)) {
                 $db = Loader::db();
                 $sql = "DELETE FROM dsEventCalendarEvents WHERE eventID = " . $eventID;
-                if($db->Execute($sql))
+                if ($db->Execute($sql))
                     die("OK");
                 else
                     die("ERROR");
@@ -120,7 +116,8 @@ class ListEvent extends DashboardPageController
         }
     }
 
-    public function updateDateEvent(){
+    public function updateDateEvent()
+    {
         if (isset($_POST) && !empty($_POST)) {
             //if calendarID === 0 -> is bad !!
             if ($_POST['calendarID'] == 0)
@@ -137,17 +134,16 @@ class ListEvent extends DashboardPageController
 
             $sql = "UPDATE dsEventCalendarEvents SET date = ? ";
 
-            if($eventEnd != "")
-            {
+            if ($eventEnd != "") {
                 $sql .= " , end = ? ";
-                array_push($args,$eventEnd);
+                array_push($args, $eventEnd);
             }
 
             $sql .= " WHERE eventID=" . $eventID . " and calendarID = " . $calendarID;
 
             $db = Loader::db();
 
-            if ($db->Execute($sql,$args))
+            if ($db->Execute($sql, $args))
                 die("OK");
 
             die("ERROR");
@@ -155,7 +151,8 @@ class ListEvent extends DashboardPageController
         }
     }
 
-    public function updateDateEventRange(){
+    public function updateDateEventRange()
+    {
         if (isset($_POST) && !empty($_POST)) {
             //if calendarID === 0 -> is bad !!
             if ($_POST['calendarID'] == 0)
@@ -175,7 +172,7 @@ class ListEvent extends DashboardPageController
 
             $db = Loader::db();
 
-            if ($db->Execute($sql,$args))
+            if ($db->Execute($sql, $args))
                 die("OK");
 
             die("ERROR");
