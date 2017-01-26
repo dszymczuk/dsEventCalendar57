@@ -1,5 +1,6 @@
 <?php
 namespace Concrete\Package\Dseventcalendar\Controller\SinglePage\Dashboard\EventCalendar;
+
 use \Concrete\Core\Page\Controller\DashboardPageController;
 use Loader;
 
@@ -7,20 +8,15 @@ defined('C5_EXECUTE') or die("Access Denied.");
 
 class Event extends DashboardPageController
 {
-
-    public function on_before_render()
+    public function view()
     {
         $this->addFooterItem(Loader::helper('html')->css('jquery.datetimepicker.min.css', 'dsEventCalendar'));
         $this->addFooterItem(Loader::helper('html')->css('dsStyle.css', 'dsEventCalendar'));
         $this->addFooterItem(Loader::helper('html')->javascript('moment.min.js', 'dsEventCalendar'));
         $this->addFooterItem(Loader::helper('html')->javascript('jquery.datetimepicker.min.js', 'dsEventCalendar'));
-    }
-
-    public function view()
-    {
         $this->requireAsset('javascript', 'jquery');
 
-        $this->set('pageTitle',t("Manage event"));
+        $this->set('pageTitle', t("Manage event"));
 
         $db = Loader::db();
         if (!empty($_POST)) {
@@ -34,10 +30,8 @@ class Event extends DashboardPageController
             unset($validateArray['event_start_time']);
             unset($validateArray['event_end_date']);
             unset($validateArray['event_end_time']);
-            foreach($validateArray as $vA)
-            {
-                if($vA === "")
-                {
+            foreach ($validateArray as $vA) {
+                if ($vA === "") {
                     $isSomeValueEmpty = true;
                     break;
                 }
@@ -53,20 +47,19 @@ class Event extends DashboardPageController
             $this->set('event_url', $this->post('event_url'));
 
             if (!$isSomeValueEmpty) {
-                if(strtotime($this->post('event_start_date')) <= strtotime($this->post('event_end_date'))
-                   or strtotime($this->post('event_start_time')) < strtotime($this->post('event_end_time')))
-                {
-                    $startDate = date_format(date_create($_POST['event_start_date']),"Y-m-d");
+                if (strtotime($this->post('event_start_date')) <= strtotime($this->post('event_end_date'))
+                    or strtotime($this->post('event_start_time')) < strtotime($this->post('event_end_time'))
+                ) {
+                    $startDate = date_format(date_create($_POST['event_start_date']), "Y-m-d");
                     $startTime = $this->post('event_start_time');
                     $date = date_create($_POST['event_end_date']);
                     date_modify($date, '+1 day');
-                    $date_end = date_format($date,'Y-m-d');
+                    $date_end = date_format($date, 'Y-m-d');
 
-                    if(!empty($startTime))
-                    {
+                    if (!empty($startTime)) {
                         $isAllDay = 0;
-                        $date_end = $startDate." ".$_POST['event_end_time'];
-                        $startDate = $startDate." ".$_POST['event_start_time'];
+                        $date_end = $startDate . " " . $_POST['event_end_time'];
+                        $startDate = $startDate . " " . $_POST['event_start_time'];
                     }
 
                     $sql = "INSERT INTO dsEventCalendarEvents (calendarID,title,date,type,description,url,end,allDayEvent) VALUES (?,?,?,?,?,?,?,?)";
@@ -111,7 +104,7 @@ class Event extends DashboardPageController
         $settings = $db->GetAll("SELECT * FROM dsEventCalendarSettings");
         // ADD DEFAULT VALUE
         foreach ($settings as $s) {
-            $s['opt'] = $s['opt']."_dsECS";
+            $s['opt'] = $s['opt'] . "_dsECS";
             $$s['opt'] = $s['value'];
         }
 
@@ -121,14 +114,13 @@ class Event extends DashboardPageController
         $this->set('scrollInput', $scrollInput_dsECS);
 
         array_unshift($types, array(
-                'typeID' => 0,
-                'type' => $default_name_dsECS,
-                'color' => $default_color_dsECS,
-            ));
+            'typeID' => 0,
+            'type' => $default_name_dsECS,
+            'color' => $default_color_dsECS,
+        ));
         // END OF ADD DEFAULT VALUE
 
         $this->set('types', $types);
-
 
 
         $this->set('button', array(

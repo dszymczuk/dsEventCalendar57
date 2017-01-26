@@ -1,17 +1,14 @@
 <?php
 namespace Concrete\Package\Dseventcalendar\Controller\SinglePage\Dashboard\EventCalendar;
+
 use \Concrete\Core\Page\Controller\DashboardPageController;
 use Loader;
 
 class Calendar extends DashboardPageController
 {
-    public function on_before_render()
-    {
-        $this->addFooterItem(Loader::helper('html')->css('dsStyle.css', 'dsEventCalendar'));
-    }
-
     public function view()
     {
+        $this->addFooterItem(Loader::helper('html')->css('dsStyle.css', 'dsEventCalendar'));
         if (!empty($_POST)) {
             if (isset($_POST['calendar_title']) && $_POST['calendar_title'] !== "") {
                 $db = Loader::db();
@@ -34,13 +31,13 @@ class Calendar extends DashboardPageController
             'label' => t('Add calendar')
         ));
 
-        $this->set('pageTitle',t("Manage calendar"));
+        $this->set('pageTitle', t("Manage calendar"));
 
     }
 
     public function update($calendar_id)
     {
-        $this->set('pageTitle',t("Manage calendar"));
+        $this->set('pageTitle', t("Manage calendar"));
 
         if (is_numeric($calendar_id)) {
             $db = Loader::db();

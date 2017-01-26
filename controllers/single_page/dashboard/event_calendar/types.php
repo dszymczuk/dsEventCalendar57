@@ -1,6 +1,8 @@
 <?php
 namespace Concrete\Package\Dseventcalendar\Controller\SinglePage\Dashboard\EventCalendar;
+
 use \Concrete\Core\Page\Controller\DashboardPageController;
+
 //use Concrete\Package\Dseventcalendar\Libraries;
 //use Concrete\Package\Dseventcalendar\Src;
 //use Package\Dseventcalendar\Libraries;
@@ -13,22 +15,17 @@ defined('C5_EXECUTE') or die("Access Denied.");
 
 class Types extends DashboardPageController
 {
-
-	public function on_before_render()
+    public function view()
     {
         $this->addFooterItem(Loader::helper('html')->css('colorpicker.min.css', 'dsEventCalendar'));
         $this->addFooterItem(Loader::helper('html')->javascript('colorpicker.min.js', 'dsEventCalendar'));
         $this->addFooterItem(Loader::helper('html')->css('dsStyle.css', 'dsEventCalendar'));
-    }
-
-    public function view()
-    {
         $this->requireAsset('javascript', 'jquery');
-        $this->set('pageTitle',t("Event types"));
+        $this->set('pageTitle', t("Event types"));
 
         $db = Loader::db();
 
-        if (!empty($_POST)){
+        if (!empty($_POST)) {
             $isSomeValueEmpty = false;
             foreach ($_POST as $key => $value) {
                 if ($value === "" && $key !== "typeID") {
@@ -58,9 +55,8 @@ class Types extends DashboardPageController
         $this->set('types', $dsEventCalendar->getEventTypes());
 
 
-
-        $this->set('type','');
-        $this->set('color','');
+        $this->set('type', '');
+        $this->set('color', '');
     }
 
     public function update()
