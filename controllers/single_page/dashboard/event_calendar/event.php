@@ -105,7 +105,7 @@ class Event extends DashboardPageController
         // ADD DEFAULT VALUE
         foreach ($settings as $s) {
             $s['opt'] = $s['opt'] . "_dsECS";
-            $$s['opt'] = $s['value'];
+            ${$s['opt']} = $s['value'];
         }
 
         $this->set('lang_datepicker', $lang_datepicker_dsECS);

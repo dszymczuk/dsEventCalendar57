@@ -33,7 +33,7 @@ class dsEventCalendar
         $settings = $db->GetAll("SELECT * FROM dsEventCalendarSettings");
         foreach ($settings as $s) {
             $s['opt'] = $s['opt'] . "_dsECS";
-            $$s['opt'] = $s['value'];
+            ${$s['opt']} = $s['value'];
         }
 
         $events = $db->GetAll($q);

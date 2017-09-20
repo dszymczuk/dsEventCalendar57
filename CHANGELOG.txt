@@ -1,3 +1,6 @@
+3.4.1
+Make compatibility with PHP 7. If you have errors, send me an email.
+
 3.4
 Apply to Concrete 5.8
 

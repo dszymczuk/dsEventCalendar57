@@ -25,10 +25,13 @@ If you choose "One day with time" event you can resize event for more days.
 
 Version
 ----
-3.4
+3.4.1
 
 Changelog
 ---------
+3.4.1
+Make compatibility with PHP 7. If you have errors, send me an email.
+
 3.4
 Apply to Concrete 5.8
 
